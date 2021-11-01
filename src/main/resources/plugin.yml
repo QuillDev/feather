@@ -1,0 +1,4 @@
+name: FeatherTest
+version: '${version}'
+main: moe.quill.feathertest.FeatherTest
+api-version: 1.17
