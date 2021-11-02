@@ -1,4 +1,4 @@
 name: Feather
 version: '${version}'
-main: moe.quill.feather.testing.Feather
+main: moe.quill.featherplug.Feather
 api-version: 1.17

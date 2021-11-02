@@ -1,4 +1,4 @@
-package moe.quill.feather.lib
+package moe.quill.feather.lib.items
 
 import net.kyori.adventure.text.Component
 import org.bukkit.Material
