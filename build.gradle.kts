@@ -1,14 +1,12 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
+    id("java")
     id("maven-publish")
     id("com.github.johnrengelman.shadow") version "7.1.0"
-
     kotlin("jvm") version "1.5.31"
 }
 
 group = "moe.quill"
-version = "0.0.4"
+version = "0.0.11"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_16
@@ -18,7 +16,6 @@ repositories {
     mavenCentral()
     maven("https://papermc.io/repo/repository/maven-public/")
     maven("https://oss.sonatype.org/content/groups/public/")
-    maven("https://jitpack.io")
 }
 
 dependencies {
@@ -40,27 +37,5 @@ publishing {
         register<MavenPublication>("gpr") {
             from(components["java"])
         }
-    }
-}
-tasks {
-    named<ShadowJar>("shadowJar") {
-        archiveBaseName.set("feather")
-        archiveClassifier.set("")
-        mergeServiceFiles()
-        manifest {
-            attributes["Main-Class"] = "moe.quill.featherplug.Feather"
-        }
-    }
-}
-
-tasks {
-    jar {
-        archiveClassifier.set("original")
-    }
-}
-
-tasks {
-    build {
-        dependsOn("shadowJar")
     }
 }
