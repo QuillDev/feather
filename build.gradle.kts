@@ -1,17 +1,14 @@
 plugins {
     id("java")
+    id("java-library")
     id("maven-publish")
     id("com.github.johnrengelman.shadow") version "7.1.0"
     kotlin("jvm") version "1.5.31"
 }
 
 group = "moe.quill"
-version = "0.0.11"
+version = "0.0.18"
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_16
-    targetCompatibility = JavaVersion.VERSION_16
-}
 repositories {
     mavenCentral()
     maven("https://papermc.io/repo/repository/maven-public/")
@@ -20,9 +17,16 @@ repositories {
 
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_16
+    targetCompatibility = JavaVersion.VERSION_16
+}
+
+
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT")
 }
+
 
 publishing {
     repositories {
@@ -36,16 +40,24 @@ publishing {
         }
     }
     publications {
-        register<MavenPublication>("gpr") {
+        register<MavenPublication>("feather") {
             from(components["java"])
+            pom {
+                name.set("feather")
+                description.set("Feather - A Kotlin based PaperMC development helper.")
+            }
         }
     }
 }
 
+
+
 tasks {
-    shadowJar {
+    jar {
+        from(sourceSets.main.get().output)
         manifest {
-            attributes("Main-Class" to "moe.quill.featherplugin.Feather")
+            attributes["Manifest-Version"] = "1.0"
+            attributes["Main-Class"] = "moe.quill.featherplugin.Feather"
         }
     }
 }
