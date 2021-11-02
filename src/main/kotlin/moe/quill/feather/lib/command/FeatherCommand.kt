@@ -27,10 +27,10 @@ abstract class FeatherCommand(
             }
 
             subCommand.execute(sender, if (args.size == 1) ArrayList() else prettyArgs.subList(1, args.size))
+            return true
         }
 
         execute(sender, prettyArgs)
-
         return true
     }
 
@@ -39,11 +39,16 @@ abstract class FeatherCommand(
 
         //If we have sub commands
         if (subCommands.isNotEmpty()) {
-            val subCommand = subCommands[prettyArgs[0]] ?: return fixTabs(tabComplete(sender, prettyArgs))
+            val subCommand = subCommands[prettyArgs[0]]
+                ?: return fixTabs(filterTabs(subCommands.keys.toList(), prettyArgs))
             return fixTabs(subCommand.tabComplete(sender, getSubArgs(prettyArgs)))
         }
 
         return fixTabs(tabComplete(sender, prettyArgs))
+    }
+
+    fun registerSubCommand(vararg subCommands: FeatherSubCommand) {
+        subCommands.forEach { this.subCommands[it.getName()] = it }
     }
 
     private fun fixTabs(args: List<String>?): MutableList<String> {
@@ -53,13 +58,5 @@ abstract class FeatherCommand(
 
     private fun getSubArgs(args: List<String>): List<String> {
         return if (args.size == 1) ArrayList() else args.subList(1, args.size)
-    }
-
-    protected fun filterTabs(tabs: List<String>, args: List<String>, caseSensitive: Boolean = false): List<String> {
-        if (args.isEmpty()) return arrayListOf()
-        val currentArgument = args[args.size - 1]
-        return tabs.filter {
-            if (caseSensitive) it.contains(currentArgument) else it.lowercase().contains(currentArgument.lowercase())
-        }
     }
 }

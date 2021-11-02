@@ -1,6 +1,7 @@
 package moe.quill.featherplug
 
 import moe.quill.feather.lib.structure.FeatherPlugin
+import moe.quill.featherplug.commands.DevCommand
 import moe.quill.featherplug.listeners.MenuListener
 
 class Feather : FeatherPlugin() {
