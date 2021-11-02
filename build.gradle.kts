@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "moe.quill"
-version = "0.0.18"
+version = "0.0.19"
 
 repositories {
     mavenCentral()
@@ -54,7 +54,8 @@ publishing {
 
 tasks {
     jar {
-        from(sourceSets.main.get().output)
+        include("moe/quill/feather/lib/**")
+        exclude("moe/quill/feather/featherplug/**")
         manifest {
             attributes["Manifest-Version"] = "1.0"
             attributes["Main-Class"] = "moe.quill.featherplugin.Feather"
