@@ -20,7 +20,7 @@ abstract class FeatherCommand(
 
         //If we have sub commands
         if (subCommands.isNotEmpty()) {
-            val subCommand = subCommands[prettyArgs[0]]
+            val subCommand = if (prettyArgs.isNotEmpty()) subCommands[prettyArgs[0]] else null
             if (subCommand == null) {
                 execute(sender, prettyArgs)
                 return true

@@ -1,10 +1,14 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     id("maven-publish")
+    id("com.github.johnrengelman.shadow") version "7.1.0"
+
     kotlin("jvm") version "1.5.31"
 }
 
 group = "moe.quill"
-version = "0.0.2"
+version = "0.0.3"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_16
@@ -38,16 +42,18 @@ publishing {
         }
     }
 }
-
-tasks.withType<Jar>() {
-
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-    manifest {
-        attributes["Main-Class"] = "moe.quill.featherplug.Feather"
+tasks {
+    named<ShadowJar>("shadowJar") {
+        archiveBaseName.set("feather")
+        mergeServiceFiles()
+        manifest {
+            attributes["Main-Class"] = "moe.quill.featherplug.Feather"
+        }
     }
+}
 
-    configurations["compileClasspath"].forEach { file: File ->
-        from(zipTree(file.absoluteFile))
+tasks {
+    build {
+        dependsOn("shadowJar")
     }
 }
