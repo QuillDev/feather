@@ -45,6 +45,6 @@ class ZoneList(private val zoneModule: ZoneModule) : FeatherSubCommand {
     }
 
     override fun tabComplete(sender: CommandSender, args: List<String>): List<String>? {
-        TODO("Not yet implemented")
+        return null
     }
 }

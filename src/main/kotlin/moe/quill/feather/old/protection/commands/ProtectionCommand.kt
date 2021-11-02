@@ -18,13 +18,12 @@ class ProtectionCommand(protectionModule: ProtectionModule, private val toolMana
     }
 
     override fun execute(sender: CommandSender, args: List<String>) {
-        TODO("Not yet implemented")
     }
 
     override fun tabComplete(
         sender: CommandSender,
         args: List<String>
     ): List<String>? {
-        TODO("Not yet implemented")
+        return null
     }
 }

@@ -39,7 +39,7 @@ class SchematicSaveCommand(private val schematicManager: SchematicManager, priva
     }
 
     override fun tabComplete(sender: CommandSender, args: List<String>): List<String>? {
-        TODO("Not yet implemented")
+        return null
     }
 
 }

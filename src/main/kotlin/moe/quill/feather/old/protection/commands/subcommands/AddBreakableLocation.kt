@@ -31,7 +31,7 @@ class AddBreakableLocation(private val protectionModule: ProtectionModule, priva
     }
 
     override fun tabComplete(sender: CommandSender, args: List<String>): List<String>? {
-        TODO("Not yet implemented")
+        return null
     }
 
 }
