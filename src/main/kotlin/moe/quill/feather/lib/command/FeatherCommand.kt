@@ -1,5 +1,7 @@
 package moe.quill.feather.lib.command
 
+import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.command.Command
 import org.bukkit.command.CommandSender
 import org.bukkit.command.TabCompleter
@@ -22,7 +24,7 @@ abstract class FeatherCommand(
         if (subCommands.isNotEmpty()) {
             val subCommand = if (prettyArgs.isNotEmpty()) subCommands[prettyArgs[0]] else null
             if (subCommand == null) {
-                execute(sender, prettyArgs)
+                sender.sendMessage(Component.text("There is no sub command with that name!").color(NamedTextColor.RED))
                 return true
             }
 

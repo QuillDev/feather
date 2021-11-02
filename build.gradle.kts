@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "moe.quill"
-version = "0.0.3"
+version = "0.0.4"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_16
@@ -45,10 +45,17 @@ publishing {
 tasks {
     named<ShadowJar>("shadowJar") {
         archiveBaseName.set("feather")
+        archiveClassifier.set("")
         mergeServiceFiles()
         manifest {
             attributes["Main-Class"] = "moe.quill.featherplug.Feather"
         }
+    }
+}
+
+tasks {
+    jar {
+        archiveClassifier.set("original")
     }
 }
 
