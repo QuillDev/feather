@@ -22,7 +22,7 @@ class SelectToolManager(override val plugin: FeatherPlugin) : FeatherModule {
 
     private val toolItem = ItemBuilder(Material.STICK)
         .displayName(Component.text("Selection Tool").color(NamedTextColor.GREEN))
-        .applyKey(toolKey, PersistentDataType.STRING, "")
+        .applyMarkerKey(toolKey)
         .build()
 
     private val leftClickMap = HashMap<UUID, Location>()

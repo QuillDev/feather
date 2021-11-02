@@ -56,7 +56,7 @@ class ItemBuilder {
     }
 
     fun <T, Z : Any> applyKey(key: NamespacedKey, type: PersistentDataType<T, Z>, value: Z): ItemBuilder {
-        meta()?.also { it.persistentDataContainer.set(key, type, value) }
+        meta()?.also { it.persistentDataContainer.set(key, type, value); meta(it) }
         return this
     }
 

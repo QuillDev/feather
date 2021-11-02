@@ -16,6 +16,8 @@ repositories {
     mavenCentral()
     maven("https://papermc.io/repo/repository/maven-public/")
     maven("https://oss.sonatype.org/content/groups/public/")
+
+
 }
 
 dependencies {
@@ -36,6 +38,14 @@ publishing {
     publications {
         register<MavenPublication>("gpr") {
             from(components["java"])
+        }
+    }
+}
+
+tasks {
+    shadowJar {
+        manifest {
+            attributes("Main-Class" to "moe.quill.featherplugin.Feather")
         }
     }
 }

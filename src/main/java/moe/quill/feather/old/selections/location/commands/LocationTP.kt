@@ -21,7 +21,7 @@ class LocationTP(private val locationModule: LocationModule) : FeatherSubCommand
     override fun execute(sender: CommandSender, args: List<String>) {
         if (sender !is Player) return
 
-        if (args.size < 1) {
+        if (args.isEmpty()) {
             sender.sendMessage(Component.text("You must specify a location name.").color(NamedTextColor.RED));
             return;
         }
@@ -29,11 +29,11 @@ class LocationTP(private val locationModule: LocationModule) : FeatherSubCommand
         val query = args[0];
 
         locationModule.findLocation(query)?.let {
-            sender.sendMessage(Component.text("Teleporting you to '%s'!".formatted(query)).color(NamedTextColor.GREEN));
+            sender.sendMessage(Component.text("Teleporting you to '$query'!").color(NamedTextColor.GREEN));
             sender.teleportAsync(it);
         } ?: run {
             sender.sendMessage(
-                Component.text("No location exists by the name '%s'!".formatted(query)).color(NamedTextColor.RED)
+                Component.text("No location exists by the name '$query'!").color(NamedTextColor.RED)
             )
         }
     }

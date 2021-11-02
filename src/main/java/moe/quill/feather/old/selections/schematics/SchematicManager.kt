@@ -2,17 +2,12 @@ package moe.quill.feather.old.selections.schematics;
 
 import moe.quill.feather.lib.structure.FeatherPlugin
 import moe.quill.feather.lib.structure.api.FeatherModule
-import moe.quill.feather.old.configuration.YamlConfigManager;
-import moe.quill.feather.old.selections.schematics.commands.SchematicCommand;
-import moe.quill.feather.old.selections.tool.SelectToolManager;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
+import moe.quill.feather.old.configuration.YamlConfigManager
+import moe.quill.feather.old.selections.schematics.commands.SchematicCommand
+import moe.quill.feather.old.selections.tool.SelectToolManager
+import org.bukkit.configuration.file.YamlConfiguration
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-class SchematicManager(override val plugin: FeatherPlugin, private val toolManager: SelectToolManager) :
+class SchematicManager(override val plugin: FeatherPlugin, toolManager: SelectToolManager) :
     YamlConfigManager(plugin, "schematics", "schematics.yml"),
     FeatherModule {
 
